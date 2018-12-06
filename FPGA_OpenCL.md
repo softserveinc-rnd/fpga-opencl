@@ -49,6 +49,7 @@ Number of logic blocks for even mediocre FPGAs may reach hundreds of thousands. 
 It is clear, therefore, that potentially FPGAs have a huge advantage over the CPUs in terms of computation time because a large number of logic blocks allows running computations in parallel. If a task is subjected to parallelization then the computation time benefit can be substantial. 
 
 ![FPGA architecture](1.png)
+Fig.1. Basic FPGA architecture.
 
 # Conventional FPGA development flow
 
@@ -69,6 +70,7 @@ In the table below CPU and FPGA development flow comparison is provided.
 | 6       | Linking program (*.exe)          | Placing and routing program (*.vo, *.sdf, *.ttf) |
 | 7       | Loading program to ROM           | Loading program to FPGA                          |
 
+*Table 1. CPU and FPGA development flow comparison.*
 
 As it can be seen from the table, the FPGA development flow has only one extra stage – synthesis. Though there is formally only one difference, in real life the traditional FPGA programming is a much more complicated process, especially because of synthesizing and placing/routing stages.
 
@@ -77,7 +79,7 @@ As it can be seen from the table, the FPGA development flow has only one extra s
 OpenCL is a new open industry standard for the task-parallel and the data-parallel heterogeneous computing on modern CPUs, GPUs, DSPs and FPGAs. It is maintained by the non-profit technology consortium Khronos Group.  
 So, what is offered by OpenCL? In short, it substantially simplifies the FPGA development because:
 
-- C/C++ is used instead of Verilog/VHDL (stage 2 in the Table above).
+- C/C++ is used instead of Verilog/VHDL (stage 2 in the Table 1).
 - Stages 5 and 6 are left to the specific tools, while traditional flow implies developer involvement
 
 Both factors reduce the FPGA development time.
@@ -100,7 +102,7 @@ __kernel void vectorAdd(__global  float *x, __global  float *y, __global float *
 
 ![FPGA OpenCL model with host and compute devices](2.png)
 
-[OpenCL model with host and compute devices](https://www.khronos.org/registry/OpenCL/specs/opencl-1.1.pdf)
+[Fig.2. OpenCL model with host and compute devices.](https://www.khronos.org/registry/OpenCL/specs/opencl-1.1.pdf)
 
 # OpenCL development flow
 To start OpenCL development the corresponding IDEs must be downloaded and installed. Development with the Intel FPGAs requires OpenCL itself and Quartus Prime Lite Design Suite. It is the minimal requirement with no licenses needed.
@@ -108,8 +110,8 @@ OpenCL development flow consists of two principal stages:
 - Host development
 - Compute device (FPGA) development
 
-![FPGA OpenCL model with host and compute devices](3.png)
-[FPGA OpenCL model with host and compute devices](https://www.intel.com/content/dam/www/programmable/us/en/pdfs/literature/hb/opencl-sdk/aocl_programming_guide.pdf)
+![OpenCL development flow in detail](3.png)
+[Fig.3. OpenCL development flow in detail.](https://www.intel.com/content/dam/www/programmable/us/en/pdfs/literature/hb/opencl-sdk/aocl_programming_guide.pdf)
 
 *Host* development is a well-known C/C++ programming. In fact, it reduces to calling specific API functions to configure, load and eventually run FPGA image.
 
@@ -122,14 +124,15 @@ OpenCL development flow consists of two principal stages:
 
 
 ![OpenCL compilation process output](4.png)
-OpenCL compilation process output
+
+Fig.4. OpenCL compilation process output.
 
 Let us consider in more detail the item 2 in the list above, namely, the compilation process.  If no syntax or other errors are detected then the compilation itself is successful and OpenCL proceeds to reporting board’s resource usage summary. In the Figure. 4 one can see the example of such an output. Generally, it is estimated to fit on the board since Logic utilization parameter, calculated according to the specific formula by individual parameters, is 34%. Individual parameters are also comfortably below 100%. Namely, only 24% of ALUTs (adaptive look-up tables, the same as configurable logic blocks) and 12% of registers are utilized. This, however, is just an estimation and does not guarantee that the fitting and routing process that follow will end up successfully.
 If you are FPGA and OpenCL newbie, however, you may see a stopper even at the estimation stage if you are reported of the resource over-usage, that is, above 100%. This means the start of the annoying iterative process of the resource usage optimization. It will last until the resource usage is lowered down below 100%.
 Fortunately, apart from the brief estimation summary, OpenCL also generates very detailed report on the resource usage indicating the bottlenecks indicated and providing recommendations to avoid them as well as other obstacles on the way to optimized code. Example page with the detail report on the resource usage by individual lines of the code is shown in the following figure.
 
 ![Example report page with details on resource usage](5.png)
-Example report page with details on resource usage
+Fig.5. Example report page with details on resource usage.
 
 In the column Details in the figure above useful advices to reduce resource usage are usually provided. In general, report is very profound and is a good guide on developing optimized as well as smart FPGA code.
 
@@ -148,7 +151,8 @@ Idea of the method consists in detection of tiny color changes in small forehead
 Heart rate (HR) calculation by the method described above was initially implemented by R&D team on laptop. We decided to port it to DE10-Nano FPGA SoC - a potentially faster device with much smaller form factor.
 
 ![De10-Nano FPGA SoC](6.png)
-[De10-Nano FPGA SoC](https://www.intel.com/content/dam/altera-www/global/en_US/portal/dsn/42/doc-us-dsnbk-42-4302081511597-de10-nano-user-manual.pdf)
+
+[Fig.6. De10-Nano FPGA SoC.](https://www.intel.com/content/dam/altera-www/global/en_US/portal/dsn/42/doc-us-dsnbk-42-4302081511597-de10-nano-user-manual.pdf)
 
 DE10-Nano has all periphery and interfaces needed for such a task (see Fig. 6). Namely, it has HDMI output and USB-OTG for camera connection. From a software point of view there were a couple of challenging tasks. 
 
