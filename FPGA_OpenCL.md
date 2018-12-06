@@ -111,6 +111,7 @@ OpenCL development flow consists of two principal stages:
 - Compute device (FPGA) development
 
 ![OpenCL development flow in detail](3.png)
+
 [Fig.3. OpenCL development flow in detail.](https://www.intel.com/content/dam/www/programmable/us/en/pdfs/literature/hb/opencl-sdk/aocl_programming_guide.pdf)
 
 *Host* development is a well-known C/C++ programming. In fact, it reduces to calling specific API functions to configure, load and eventually run FPGA image.
@@ -132,6 +133,7 @@ If you are FPGA and OpenCL newbie, however, you may see a stopper even at the es
 Fortunately, apart from the brief estimation summary, OpenCL also generates very detailed report on the resource usage indicating the bottlenecks indicated and providing recommendations to avoid them as well as other obstacles on the way to optimized code. Example page with the detail report on the resource usage by individual lines of the code is shown in the following figure.
 
 ![Example report page with details on resource usage](5.png)
+
 Fig.5. Example report page with details on resource usage.
 
 In the column Details in the figure above useful advices to reduce resource usage are usually provided. In general, report is very profound and is a good guide on developing optimized as well as smart FPGA code.
@@ -207,3 +209,5 @@ Globally, getting more familiar with OpenCL intrinsics and special features coul
 - [Programming Guide for Intel FPGA SDK for OpenCL](https://www.intel.com/content/dam/www/programmable/us/en/pdfs/literature/hb/opencl-sdk/aocl_programming_guide.pdf)
 - [DE10-Nano User Manual](https://www.intel.com/content/dam/altera-www/global/en_US/portal/dsn/42/doc-us-dsnbk-42-4302081511597-de10-nano-user-manual.pdf)
    
+
+Author: Taras Kurnytskyi
